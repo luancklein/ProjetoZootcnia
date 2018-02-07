@@ -1,0 +1,214 @@
+* {
+	box-sizing: border-box;
+}
+html, body {height:100%;}
+body {
+	background-color: #FFFFFF;	
+	top: 0;
+	left: 0;
+	right: 0;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+main {
+	flex: 1;
+}
+
+.topbar {
+	padding: 10px 0px;
+}
+
+#logo {
+	display: inline-block;
+	height: 60px;
+	margin-right: 20px;
+}
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+#caixa {
+	text-align: center;
+	height: auto;
+	background-color: #dee1e5;
+	padding: 16px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+#nome {
+	height: 50px;
+	text-align: center;
+	font-size: 16px;
+	padding-top: 14px;
+	background-color: #fff;
+	border-radius: 5px;
+	color: #012b70;
+	font-weight: bolder;
+	margin-bottom: 15px;
+}
+
+
+
+.navbar{
+	border-radius: 0px;
+}
+
+footer{
+	height: 70px;
+	background-color: #b94a48;		
+	text-align: center;
+	color: #FFF;
+	position: relative;
+	padding: 15px;
+    bottom: 0px; 
+    width: 100%; 
+}
+.vcenter {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.btn {
+	border: none;
+	height: 40px;
+	margin: 5px;
+	padding: 12px;
+	font-weight: bolder;
+	font-size: 12px;
+	color: #fff;
+}
+
+.btn1 {background-color: #169db3;}
+.btn2 {background-color: #ff8f00;}
+.btn3 {background-color: #9d261d;}
+.btn4 {background-color: #005580;}
+.btn1:hover {background-color: #169db3; color:#fff;}
+.btn2:hover {background-color: #ff8f00; color:#fff;}
+.btn3:hover {background-color: #9d261d; color:#fff;}
+.btn4:hover {background-color: #005580; color:#fff;}
+
+#home {width: 28px;}
+
+
+#barra_menu {
+	background-color: #137007;
+	color: #FFFFFF;
+	
+}
+
+
+#conteudo {
+	margin-top: 30px;
+	background-color: #dee1e5;
+	padding: 26px;
+	margin-bottom: 50px;
+}
+
+#sub {font-size: 13px;}
+.panel-body {padding: 0}
+
+
+#jumb {margin-top: 10px;}
+#jumb p {text-align: center;}
+
+#titulo {
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+#name_user
+{
+	display: none;
+}
+
+.oculto
+{
+	display:none;
+}
+
+.caix{
+	text-align: center;
+}
+
+.prodFound{
+	cursor: pointer;
+}
+
+button{
+	cursor: pointer;
+}
+
+#Insumosinformations{
+	display : none;
+}
+
+.bad_durable{background-color: red;}
+.atention_durable{background-color: yellow;}
+.good_durable{background-color: green;}
+
+.form-control
+{
+	cursor: pointer;
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #137007;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
