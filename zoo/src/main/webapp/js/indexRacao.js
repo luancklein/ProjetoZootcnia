@@ -31,6 +31,7 @@ function buildMenuLeftProdutions(type) {
 	var suinos = [];
 	var bovinos = [];
 	var ovinos = [];
+	var equinos = [];
 	
 	//O primeiro passo é separar cada produção de acordo com seu respectivo tipo de animal;
 	//Para isso, usamos 3 listas distintas 'suinos', 'bovinos', 'ovinos'
@@ -53,31 +54,53 @@ function buildMenuLeftProdutions(type) {
 				bovinos.push(productions[i].name_ration);
 			}
 			break;
-		}
+		
+		case "Equina":
+			if (equinos.indexOf(productions[i].name_ration) == -1) {
+				equinos.push(productions[i].name_ration);
+			}
+			break;
+	}
 	}
 	
 	
     // O segundo passo é apenas contruir o HTML de acordo com as produções
 	//Para isso, usamos uma variavel local que irá conter o HTML em forma de string
-	var colocarDentro = '<div class="alert alert-success" role="alert">RAÇÕES SUÍNAS</div><div class="list-group" id="list_suino">';
+
 	
 	//A cada tipo de produção que apresentar pelo menos uma produção cadastrada, cria-se um botão com o nome da ração
 	//Quando esse botão for clicado, será chamada a função 'typeProductionSelected', passando como parametros
 	//O nome da ração, e a definição do que será feito, se está no módulo de visualização ou de exclusão
 	
 	//O processo será repetido para os 3 tipos de animais
-	for (i in suinos) {
+	
+	var colocarDentro = '</div><div class="alert alert-success" role="alert">RAÇÕES BOVINAS</div><div class="list-group" id="list_bovino">';
+	for (i in bovinos) {
 		colocarDentro += '<button class="list-group-item" onclick="typeProductionSelected('
 				+ "'"
-				+ suinos[i] 
-				+ "',"
+				+ bovinos[i]
+				+ "', "
 				+ "'"
-				+ type //Processo necessário para as variveis serem passadas como strings, e não haver conflito na estrutura do HTML
+				+ type
 				+ "'"
 				+ ' )">'
-				+ suinos[i] + '</button>';
-
+				+ bovinos[i] + '</button>';
 	}
+	
+	colocarDentro += '</div><div class="alert alert-success" role="alert">RAÇÕES EQUINOS</div><div class="list-group" id="list_equinos">';
+	for (i in equinos) {
+		colocarDentro += '<button class="list-group-item" onclick="typeProductionSelected('
+				+ "'"
+				+ equinos[i]
+				+ "', "
+				+ "'"
+				+ type
+				+ "'"
+				+ ' )">'
+				+ equinos[i] + '</button>';
+	}
+	
+	
 	colocarDentro += '</div> <div class="alert alert-success" role="alert">RAÇÕES OVINAS</div> <div class="list-group" id="list_ovino">';
 	for (i in ovinos) {
 		colocarDentro += '<button class="list-group-item" onclick="typeProductionSelected('
@@ -90,18 +113,21 @@ function buildMenuLeftProdutions(type) {
 				+ ' )">'
 				+ ovinos[i] + '</button>';
 	}
-	colocarDentro += '</div><div class="alert alert-success" role="alert">RAÇÕES BOVINAS</div><div class="list-group" id="list_bovino">';
-	for (i in bovinos) {
+	
+	colocarDentro += '<div class="alert alert-success" role="alert">RAÇÕES SUÍNAS</div><div class="list-group" id="list_suino">';
+	for (i in suinos) {
 		colocarDentro += '<button class="list-group-item" onclick="typeProductionSelected('
 				+ "'"
-				+ bovinos[i]
-				+ "', "
+				+ suinos[i] 
+				+ "',"
 				+ "'"
-				+ type
+				+ type //Processo necessário para as variveis serem passadas como strings, e não haver conflito na estrutura do HTML
 				+ "'"
 				+ ' )">'
-				+ bovinos[i] + '</button>';
+				+ suinos[i] + '</button>';
+
 	}
+	
 	colocarDentro += "</div>";
 	$("#menuRations").html(colocarDentro);//Após isso, irá aparecer o menu lateral das produções de ração 
 }

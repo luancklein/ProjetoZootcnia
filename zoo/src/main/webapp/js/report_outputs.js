@@ -39,7 +39,7 @@ var rationCurrent = "";
 			});
 		}
 		
-$( "#salvar" ).click(function() {
+function generateReport(){
 			var nameInput = $( "select#name option:checked" ).val();
 			var date = $("#dateBuy").val();
 			 nameProdution = $( "select#name_ration option:checked" ).val();
@@ -99,4 +99,13 @@ $( "#salvar" ).click(function() {
 					console.error(response);
 				}
 			});
-		});
+		}
+
+$( "#salvar" ).click(function() {
+	generateReport();
+	
+});
+
+window.onload = function(e) {
+	generateReport();
+};

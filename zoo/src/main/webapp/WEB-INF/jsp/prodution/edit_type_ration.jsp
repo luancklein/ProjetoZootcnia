@@ -16,6 +16,7 @@
 						name="animal_type_ration" onchange="getNameRations();" required>
 						<option>Selecione o tipo de ração</option>
 						<option>Bovina</option>
+						<option>Equina</option>
 						<option>Ovina</option>
 						<option>Suína</option>
 					</select>

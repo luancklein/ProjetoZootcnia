@@ -155,6 +155,7 @@ function informations()
 		//colocarDentro é a variavel que terá todo o conteudo que será colocado na tela para o usuário;
 		var colocarDentro = '<div class="panel panel-success"><div class="panel-heading">Produções Encontradas'
 				+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Nome da Produção</b></th><th><b>Quantidade Produzida</b></th><th><b>Data do Cadastro</b></th><th><b>Responsável</b></th></tr></thead><tbody>';
+		var somaTotalQtdFinais = 0.0;
 		for (i in prodFind) {//Percorre todas as produções entradas
 				colocarDentro += '<tr class = "prodFound" onclick="productionSpecific('
 						+ prodFind[i].id + ", 'normal'" + ');">' //Informa o tipo do animal
@@ -162,6 +163,8 @@ function informations()
 						+ prodFind[i].qtd_final.toFixed(2) + " Kg</td>" + "<td>" // A quantidade final produzida
 						+ prodFind[i].date + "</td>" + "<td>" // A data em que foi produzida
 						+ prodFind[i].user + "</td></tr>"; // E quam foi o usuário a cadastrar aquela produção
+				somaTotalQtdFinais += prodFind[i].qtd_final;
+				
 		}
 		
 		//Se caso não houver nenhuma produção encontrada, será "emitdo" esse alerta avisando o usuário!
@@ -174,6 +177,7 @@ function informations()
 		}
 		else{
 			calcsWithInsumos(prodFind); //Coloca os dados do insumo; 
+			colocarDentro += "<tr><td><b> Consumo total de insumos: </b>"+ somaTotalQtdFinais.toFixed(2) +"Kg</td><td></td><td></td><td></td></tr>"
 			colocarDentro += "</tbody></table></div></div>";//Fecha a tabela;
 			$("#caix").html(colocarDentro);//Insere os dados no HTML
 		}

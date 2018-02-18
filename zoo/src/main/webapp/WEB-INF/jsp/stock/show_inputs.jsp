@@ -13,8 +13,8 @@
 				<thead>
 					<tr>
 						<th><b>Insumo<b></th>
-						<th><b>Quantidade atual(IFC)</b></th>
-						<th><b>Quantidade disponível para vir</b></th>
+						<th><b>Quantidade na fábrica de ração(IFC)</b></th>
+						<th><b>Quantidade disponível para empenhar</b></th>
 						<th><b>Preço pago por Kg</b></th>
 						<th><b>Ultima alteração</b></th>
 					</tr>

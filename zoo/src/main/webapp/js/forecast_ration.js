@@ -12,6 +12,7 @@ function getStockNow()
 				alert(response.message);
 			} else {
 				stockNow = response.data; //Adicionamos o valor de retorno a variavel global insumo;
+				getForecast();
 			}
 		},
 		failure : function(response) {
@@ -34,6 +35,7 @@ function getForecast()
 				alert(response.message);
 			} else {
 				forecast = response.data; //Adicionamos o valor de retorno a variavel global insumo;
+				generateReport();
 			}
 		},
 		failure : function(response) {
@@ -44,14 +46,11 @@ function getForecast()
 	});
 }
 
-getStockNow();
-getForecast();
-
-$( "#calcular" ).click(function() { 
+function generateReport(){ 
 
 var options = "<h1>PREVISÃO</h1><br>"
 	var options = '<div class="panel panel-success"><div class="panel-heading">Previsibilidade dos insumos' 
-		+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Insumo</b></th><th><b>Quantidade</b></th><th><b>Média diária</b></th><th><b>Média por produção</b></th><th><b>Dias</b></th><th><b>Produções</b></th><th><b>Status</b></th></tr></thead><tbody>'; 
+		+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Insumo</b></th><th><b>Qtd na fábrica (IFC)</b></th><th><b>Média diária</b></th><th><b>Média por produção</b></th><th><b>Suficiente/Dias</b></th><th><b>Suficiente/Produções</b></th><th><b>Status</b></th></tr></thead><tbody>'; 
 	 
 
 var mediaDiaria = {};
@@ -126,6 +125,17 @@ for (i in forecast)
 options += "</tbody></table></div></div>";
 	
 	$("#forecastRation").html(options);
+}
+
+
+
+$( "#calcular" ).click(function() {
+	generateReport();
+	
 });
 
 
+window.onload = function(e) {
+	
+	getStockNow();
+};

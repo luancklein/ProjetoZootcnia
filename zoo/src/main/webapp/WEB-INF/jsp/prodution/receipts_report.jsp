@@ -7,7 +7,7 @@
 <div class="container-fluid">
 
 	<div class="panel panel-success">
-		<div class="panel-heading"><b>Receitas cadastradas</b></div>
+		<div class="panel-heading"><b>Fórmulas cadastradas</b></div>
 		<div class="panel-body">
 			<table class="table table-hover">
 				<thead>

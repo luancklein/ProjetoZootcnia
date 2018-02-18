@@ -15,6 +15,7 @@
 					id="for_animal" name="for_animal" onchange="getNameRations();"
 					required>
 					<option>Bovina</option>
+					<option>Equina</option>
 					<option>Ovina</option>
 					<option>Suína</option>
 				</select>

@@ -11,6 +11,7 @@
 		class="form-control" id="animal_type_ration" name="animal_type_ration" onchange="getNameRations();">
 		<option>Selecione o tipo de ração</option>
 		<option>Bovina</option>
+		<option>Equina</option>
 		<option>Ovina</option>
 		<option>Suína</option>
 	</select>

@@ -12,7 +12,7 @@
 	</form>
 </div>
 
-<div id="snackbar">Cadastro realizado com sucesso!</div>
+<div id="snackbar">Remoção realizado com sucesso!</div>
 </main>
 
 
