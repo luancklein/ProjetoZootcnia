@@ -13,7 +13,7 @@ import br.edu.ifc.concordia.inf.zoo.model.OutputInputs;
 @RequestScoped
 public class OutputInputsBS extends HibernateBusiness{
 	
-	public void registerNewOutput(String nameInput, String nameProdution, String animal, double qtd, String date, String year, Long id)
+	public void registerNewOutput(String nameInput, String nameProdution, String animal, double qtd, String date, String year, Long id, Double price)
 	{
 		OutputInputs input = new OutputInputs();
 		input.setAnimal(animal);
@@ -23,6 +23,7 @@ public class OutputInputsBS extends HibernateBusiness{
 		input.setYear(year);
 		input.setNameInput(nameInput);
 		input.setIdProd(id);
+		input.setPrice(price);
 		dao.persist(input);
 	}
 	

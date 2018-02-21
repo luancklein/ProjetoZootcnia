@@ -168,7 +168,7 @@ function productionSpecific(id, type) {
 	}
 	colocarDentro = '<div class="panel panel-success"><div class="panel-heading">';
 	colocarDentro += cert.name_ration;
-	colocarDentro += '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th>Insumos</th><th>Quantidade</th></tr></thead><tbody><tr>';
+	colocarDentro += '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th>Insumos</th><th>Quantidade</th><th>Custo</th></tr></thead><tbody><tr>';
 	var insumos;
 	animal1 = $("#animal_type_ration").val();
 	$.ajax({
@@ -200,7 +200,8 @@ function productionSpecific(id, type) {
 								// Type = Normal: Significa que o usuário está no modulo de visualização 
 									
 									colocarDentro += "<td>" + cert[aux]
-									+ "kg</td></tr>";
+									+ "kg</td>";
+									colocarDentro += "<td>R$" + cert[aux+"Price"].toFixed(2) +"</td></tr>";
 							}
 							cont += 1;
 						}
@@ -213,7 +214,7 @@ function productionSpecific(id, type) {
 						colocarDentro += "<td>" + cert.qtd_final.toFixed(2) + "kg</td></tr>";
 						colocarDentro += "<tr><td><b>Responsável: </b></td><td>" + cert.user + "</td></tr>";
 						colocarDentro += "<tr><td><b>Data: </b></td><td>" + cert.date + "</td></tr>";
-						colocarDentro += "<tr><td><b>Custo: </b></td><td>R$" + cert.price.toFixed(2) + "</td></tr>";
+						colocarDentro += "<tr><td><b>Custo final: </b></td><td>R$" + cert.price.toFixed(2) + "</td></tr>";
 						colocarDentro += '</form> </tbody></table>';
 						if (type != "normal") {
 							colocarDentro += '<input type="button" onclick="sendForm();" class="btn btn-danger col-md-12 col-xs-12 col-md-offset-2" id="buttonForm2"  value="Remover produção">';

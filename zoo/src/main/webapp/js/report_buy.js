@@ -23,8 +23,8 @@ function generateReport()
 					options += "<tr> <td> " + response.data[i].name +"</td><td>";
 					options += response.data[i].dateBuy + "</td><td>";
 					options += response.data[i].qtdBuy.toFixed(2) + "</td><td>";
-					options += response.data[i].priceTotal.toFixed(2) + "</td><td>";
-					options += response.data[i].pricePerKg.toFixed(2) + "</td><td></tr>";
+					options += "R$"+response.data[i].priceTotal.toFixed(2) + "</td><td>";
+					options += "R$"+response.data[i].pricePerKg.toFixed(2) + "</td><td></tr>";
 				}
 				
 				options += "</tbody></table></div></div>";

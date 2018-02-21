@@ -145,9 +145,9 @@ function showToast() {
 function sendData(){
 	custoProd = 0.0;
 	cont = 1;
+	pricesInsumo = "";
 	for (i in insumosList)
 		{	
-			
 			var insumoX = "insumo" + cont;
 			var qtdInp = $("#" + insumoX).val();
 			for (t in stockNow)
@@ -155,15 +155,15 @@ function sendData(){
 					if (insumosList[i] == stockNow[t].nameInput)
 						{
 							custoProd += stockNow[t].pricePerKg * qtdInp;
+							pricesInsumo += "&prod." + insumoX + "Price=" + stockNow[t].pricePerKg * qtdInp;
 						}
 				}
 			cont += 1;
 		}
-	alert("Custo: " + custoProd);
 	    $.ajax({
 	           type: "POST",
 	           url: "/zoo/registerNewProdution",
-	           data: $("#addProdForm").serialize() + "&prod.price=" + custoProd, // serializes the form's elements.
+	           data: $("#addProdForm").serialize() + "&prod.price=" + custoProd + pricesInsumo, // serializes the form's elements.
 	   		success : function(response) {
 				console.log(response);
 				if (response.cod == "404") {

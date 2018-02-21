@@ -34,6 +34,21 @@ private static final long serialVersionUID = 1L;
 	private Double insumo10 = 0.0;
 	private Double insumo11 = 0.0;
 	private Double insumo12 = 0.0;
+	
+	private Double insumo1Price = 0.0;
+	private Double insumo2Price = 0.0;
+	private Double insumo3Price = 0.0;
+	private Double insumo4Price = 0.0;
+	private Double insumo5Price = 0.0;;
+	private Double insumo6Price = 0.0;;
+	private Double insumo7Price = 0.0;;
+	private Double insumo8Price = 0.0;;
+	private Double insumo9Price = 0.0;
+	private Double insumo10Price = 0.0;
+	private Double insumo11Price = 0.0;
+	private Double insumo12Price = 0.0;
+	
+	
 	private Double qtd_final = 0.0;
 	private String user;
 	private String date;
@@ -42,6 +57,81 @@ private static final long serialVersionUID = 1L;
 	private Double price = 0.0;
 	
 	
+	
+	
+	public Double getInsumo1Price() {
+		return insumo1Price;
+	}
+	public void setInsumo1Price(Double insumo1Price) {
+		this.insumo1Price = insumo1Price;
+	}
+	public Double getInsumo2Price() {
+		return insumo2Price;
+	}
+	public void setInsumo2Price(Double insumo2Price) {
+		this.insumo2Price = insumo2Price;
+	}
+	public Double getInsumo3Price() {
+		return insumo3Price;
+	}
+	public void setInsumo3Price(Double insumo3Price) {
+		this.insumo3Price = insumo3Price;
+	}
+	public Double getInsumo4Price() {
+		return insumo4Price;
+	}
+	public void setInsumo4Price(Double insumo4Price) {
+		this.insumo4Price = insumo4Price;
+	}
+	public Double getInsumo5Price() {
+		return insumo5Price;
+	}
+	public void setInsumo5Price(Double insumo5Price) {
+		this.insumo5Price = insumo5Price;
+	}
+	public Double getInsumo6Price() {
+		return insumo6Price;
+	}
+	public void setInsumo6Price(Double insumo6Price) {
+		this.insumo6Price = insumo6Price;
+	}
+	public Double getInsumo7Price() {
+		return insumo7Price;
+	}
+	public void setInsumo7Price(Double insumo7Price) {
+		this.insumo7Price = insumo7Price;
+	}
+	public Double getInsumo8Price() {
+		return insumo8Price;
+	}
+	public void setInsumo8Price(Double insumo8Price) {
+		this.insumo8Price = insumo8Price;
+	}
+	public Double getInsumo9Price() {
+		return insumo9Price;
+	}
+	public void setInsumo9Price(Double insumo9Price) {
+		this.insumo9Price = insumo9Price;
+	}
+	public Double getInsumo10Price() {
+		return insumo10Price;
+	}
+	public void setInsumo10Price(Double insumo10Price) {
+		this.insumo10Price = insumo10Price;
+	}
+	public Double getInsumo11Price() {
+		return insumo11Price;
+	}
+	public void setInsumo11Price(Double insumo11Price) {
+		this.insumo11Price = insumo11Price;
+	}
+	public Double getInsumo12Price() {
+		return insumo12Price;
+	}
+	public void setInsumo12Price(Double insumo12Price) {
+		this.insumo12Price = insumo12Price;
+	}
+
 	public Double getPrice() {
 		return price;
 	}

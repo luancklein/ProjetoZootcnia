@@ -111,6 +111,21 @@ public class ProdutionController extends AbstractController {
 		names[9] = receita.getInsumo10();
 		names[10] = receita.getInsumo11();
 		names[11] = receita.getInsumo12();		
+
+		double[] pricesInputs;
+		pricesInputs = new double[12];
+		pricesInputs[0] = prod.getInsumo1Price();
+		pricesInputs[1] = prod.getInsumo2Price();
+		pricesInputs[2] = prod.getInsumo3Price();
+		pricesInputs[3] = prod.getInsumo4Price();
+		pricesInputs[4] = prod.getInsumo5Price();
+		pricesInputs[5] = prod.getInsumo6Price();
+		pricesInputs[6] = prod.getInsumo7Price();
+		pricesInputs[7] = prod.getInsumo8Price();
+		pricesInputs[8] = prod.getInsumo9Price();
+		pricesInputs[9] = prod.getInsumo10Price();
+		pricesInputs[10] = prod.getInsumo11Price();
+		pricesInputs[11] = prod.getInsumo12Price();
 		
 		Boolean state = true;
 
@@ -137,7 +152,7 @@ public class ProdutionController extends AbstractController {
 				//this.bs2.registerNewQtd(names[i], qtdInputs[i], prod.getDate(), "saída");
 				this.bs2.registerNewAtualization(names[i], qtdInputs[i], prod.getDate());
 				this.bs3.actualizeInput(names[i], qtdInputs[i], prod.getDate(), "output", 0);
-				this.bs4.registerNewOutput(names[i], prod.getName_ration(), prod.getType_animal(), qtdInputs[i], prod.getDate(), prod.getDate().substring(0,4), idProd);
+				this.bs4.registerNewOutput(names[i], prod.getName_ration(), prod.getType_animal(), qtdInputs[i], prod.getDate(), prod.getDate().substring(0,4), idProd,pricesInputs[i]);
 			}
 		}
 		

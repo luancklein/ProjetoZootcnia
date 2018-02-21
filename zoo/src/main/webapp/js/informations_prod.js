@@ -232,6 +232,14 @@ function calcsWithInsumos(produt)
 			var idMenor = 0;
 			var media = 0;
 			var somaTotal = insu[0];
+			
+			var maCus = 0;
+			var meCus = 100000;
+			var idMeCus = 0;
+			var idMaCus = 0;
+			
+			var custoTotal = 0.0;
+			
 			for (i in insu[1])
 				{
 					if(insu[1][i][insu[2][i]] >= maior)//Encontrando o maior gasto do insumo!
@@ -244,16 +252,42 @@ function calcsWithInsumos(produt)
 						menor = insu[1][i][insu[2][i]];
 						idMenor = insu[1][i];
 					}
+					
+					
+					
+				if(insu[1][i][insu[2][i]+ "Price"] >= maCus)//Encontrando o maior custo do insumo!
+					{
+						maCus = insu[1][i][insu[2][i]+ "Price"];
+						idMaCus = insu[1][i]; 
+					}
+				if(insu[1][i][insu[2][i]+ "Price"] <= meCus)//Encontrando o menor custo do insumo;
+				{
+					meCus = insu[1][i][insu[2][i]+ "Price"];
+					idMeCus = insu[1][i];
+				}
+					
+					
 					media += insu[1][i][insu[2][i]];
+					custoTotal += insu[1][i][insu[2][i] + "Price"];
 		
 		}
+	mediaPreco = custoTotal / insu[1].length;
 	media = media / insu[1].length; //Calculando a média!
 	//Inserindo os dados dentro de uma variavel que posteriormente irá para o HTML!
-	colocarDentro += "<tr><td><b>Maior uso foi: </b></td> <td>" + maior.toFixed(2) + " Kg - <b> Data: </b>" + idMaior["date"] + " - <b>Ração:</b> " + idMaior["name_ration"] + "</td></tr>";
-	colocarDentro += "<tr><td><b>Menor uso foi: </b></td> <td>" + menor.toFixed(2) + " Kg - <b> Data: </b>" + idMenor["date"] + " - <b>Ração:</b> " + idMenor["name_ration"] + "</td></tr>";
+	
+	colocarDentro += "<tr><td>  <b><i>INFORMAÇÕES SOBRE O CUSTO </b></i></td><td></td><td></td></tr>";
+	colocarDentro += "<tr><td><b>Custo total:</b></td> <td> R$" + custoTotal.toFixed(2) + "</td></tr>";
+	colocarDentro += "<tr><td><b>Média de custo:</b></td> <td> R$" + mediaPreco.toFixed(2) + "</td></tr>";
+	colocarDentro += "<tr><td><b>Maior custo foi: </b></td> <td>R$" + maCus.toFixed(2) + " - <b> Data: </b>" + idMaCus["date"] + " - <b>Ração:</b> " + idMaCus["name_ration"] + "</td></tr>";
+	colocarDentro += "<tr><td><b>Menor custo foi: </b></td> <td>R$" + meCus.toFixed(2) + " - <b> Data: </b>" + idMeCus["date"] + " - <b>Ração:</b> " + idMeCus["name_ration"] + "</td></tr>";
+	
+	colocarDentro += "<tr><td></td><td></td><td></td></tr>";
+	colocarDentro += "<tr><td><b><i>INFORMAÇÕES SOBRE A QUANTIDADE </b></i></td><td></td><td></td></tr>";
 	colocarDentro += "<tr><td><b>Gasto total do insumo: </b></td> <td>" + somaTotal.toFixed(2) + " Kg</td></tr>";
-	colocarDentro += "<tr><td><b>A Média de uso atual é: </b></td> <td>" + media.toFixed(2) + " Kg</td></tr> </tbody></table>";
-	$("#infoInsumos").html(colocarDentro);//Colocando os dados no HTML;
+	colocarDentro += "<tr><td><b>A Média de uso atual é: </b></td> <td>" + media.toFixed(2) + " Kg</td></tr> ";
+	colocarDentro += "<tr><td><b>Maior uso foi: </b></td> <td>" + maior.toFixed(2) + " Kg - <b> Data: </b>" + idMaior["date"] + " - <b>Ração:</b> " + idMaior["name_ration"] + "</td></tr>";
+	colocarDentro += "<tr><td><b>Menor uso foi: </b></td> <td>" + menor.toFixed(2) + " Kg - <b> Data: </b>" + idMenor["date"] + " - <b>Ração:</b> " + idMenor["name_ration"] + "</td></tr></tbody></table>";
+		$("#infoInsumos").html(colocarDentro);//Colocando os dados no HTML;
 	if(maior <= 0 && menor <= 0 || somaTotal <= 0)//Se caso as variaveis contiveram ainda os seus valores iniciais, (continuarem intactas), significa que nenhum insumo foi encontrado!
 		{
 			colocarDentro = '<div class="alert alert-warning" role="alert"><strong>Atenção!</strong> Nenhum insumo encontrado! </div>';
@@ -330,7 +364,7 @@ function productionSpecific(id, type) {
 	}
 	colocarDentro = '<div class="panel panel-success"><div class="panel-heading">';
 	colocarDentro += cert.name_ration;
-	colocarDentro += '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th>Insumos</th><th>Quantidade</th></tr></thead><tbody><tr>';
+	colocarDentro += '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th>Insumos</th><th>Quantidade</th><th>Custo</th></tr></thead><tbody><tr>';
 	var insumos;
 	animal1 = $("#animal_type_ration").val();
 	$.ajax({
@@ -358,35 +392,15 @@ function productionSpecific(id, type) {
 								// Na index, os dados são apenas colocar em uma tabela
 								// Já na edit/remove, os dados são colocados dentro de um input, possibilitando a edição do usuário
 								// Além disso, nessa JSP será disponibilizado 2 botões (editar e remover) 
-								if (type == "normal") 
-								// Type = Normal: Significa que o usuário está no modulo de visualização 
-									{
+
 									colocarDentro += "<td>" + cert[aux].toFixed(2)
-											+ " Kg</td></tr>";
-								} else 
-								// Type = Qualquer outra coisa: Significa que o usuário está na parte de edição ou exclusão de produção 
-								{
-									colocarDentro += "<td><input type='number' id='"
-											+ aux
-											+ "' value="
-											+ cert[aux]
-											+ " name='"
-											+ aux
-											+ "' required></td></tr>";
-								}
-							} else {
-								colocarDentro += '<input type="number" min=0 class="form-control oculto" id="'
-										+ aux
-										+ '" name="'
-										+ aux
-										+ '"  value=0 required novalidate>';
+											+ " Kg</td>";
+									colocarDentro += "<td>R$" + cert[aux + "Price"].toFixed(2) +"</td></tr>";
+
 							}
 							cont += 1;
 						}
-						colocarDentro += '<input type="number" class="oculto" id="id" name="id" value='
-								+ cert.id + " novalidate>";
-						//Definimos um input com o Id da produção e o 'escondemos' dentro do HTML para buscarmos essa informação depois
-						
+			
 						colocarDentro += "<tr><td><b>Total:</></td>";
 						colocarDentro += "<td>" + cert.qtd_final.toFixed(2) + " Kg</td></tr>";
 						colocarDentro += "<tr><td><b>Responsável: </b></td><td>" + cert.user + "</td></tr>";

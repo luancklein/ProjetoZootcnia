@@ -25,7 +25,14 @@ public class OutputInputs implements Serializable{
 	private String date;
 	private String year;
 	private Long idProd;
+	private Double price = 0.0;
 	
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 	public Long getIdProd() {
 		return idProd;
 	}
