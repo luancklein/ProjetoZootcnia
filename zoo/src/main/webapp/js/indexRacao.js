@@ -139,14 +139,15 @@ function buildMenuLeftProdutions(type) {
 function typeProductionSelected(nameRation, type) {
 	var colocarDentro = '<div class="panel panel-success"><div class="panel-heading">Produções Encontradas - '
 			+ nameRation
-			+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Nome da Produção</b></th><th><b>Quantidade Produzida</b></th><th><b>Data da Produção</b></th><th><b>Responsável</b></th></tr></thead><tbody>';
+			+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Nome da Produção</b></th><th><b>Quantidade Produzida</b></th><th><b>Custo</b></th><th><b>Data da Produção</b></th><th><b>Responsável</b></th></tr></thead><tbody>';
 //Ele percorre a variavel global 'productions', e quando encontrar alguma produção com aquele nome, ele adicina uma linha na tabela
 	for (i in productions) {
 		if (productions[i].name_ration == nameRation) {
 			colocarDentro += '<tr class="prodFound" onclick="productionSpecific('
 					+ productions[i].id + ',' + "'" + type + "'" + ');">' //Informa o tipo do animal
 					+ "<td>" + productions[i].name_ration + "</td>" + "<td>" //O nome da ração
-					+ productions[i].qtd_final + "</td>" + "<td>" // A quantidade final produzida
+					+ productions[i].qtd_final.toFixed(2) + "</td>" + "<td>" // A quantidade final produzida
+					+ "R$" +productions[i].price.toFixed(2) + "</td>" + "<td>" //custo da produção
 					+ productions[i].date + "</td>" + "<td>" // A data em que foi produzida
 					+ productions[i].user + "</td></tr>"; // E quam foi o usuário a cadastrar aquela produção
 		}
@@ -208,8 +209,11 @@ function productionSpecific(id, type) {
 								+ cert.id + " novalidate>";
 						//Definimos um input com o Id da produção e o 'escondemos' dentro do HTML para buscarmos essa informação depois
 						
-						colocarDentro += "<tr><td>TOTAL</td>";
-						colocarDentro += "<td>" + cert.qtd_final + "kg</td></tr>";
+						colocarDentro += "<tr><td><b>Total</b></td>";
+						colocarDentro += "<td>" + cert.qtd_final.toFixed(2) + "kg</td></tr>";
+						colocarDentro += "<tr><td><b>Responsável: </b></td><td>" + cert.user + "</td></tr>";
+						colocarDentro += "<tr><td><b>Data: </b></td><td>" + cert.date + "</td></tr>";
+						colocarDentro += "<tr><td><b>Custo: </b></td><td>R$" + cert.price.toFixed(2) + "</td></tr>";
 						colocarDentro += '</form> </tbody></table>';
 						if (type != "normal") {
 							colocarDentro += '<input type="button" onclick="sendForm();" class="btn btn-danger col-md-12 col-xs-12 col-md-offset-2" id="buttonForm2"  value="Remover produção">';

@@ -34,6 +34,8 @@ function informations()
 	var insumo = $( "select#insumo option:checked" ).val();
 	var anoI = $("#dataInicio").val().toString();
 	var anoF = $("#dataFim").val().toString(); 
+	var costMa = $("#cost_max").val();
+	var costMi = $("#cost_min").val();
 	
 	//Verificar se há dados inseridos pelo usuário
 	//Caso não houver, ele muda o valor para "None", para informar que o campo foi deixado em branco
@@ -66,8 +68,8 @@ function informations()
 	}
 
 	//Ambas as variaveis são usadas para informar a ordem de verificação dos dados;
-	var infos = ["data", nameRation, typeAnimal, "qtd_max", "qtd_min"];
-	var acessBanco = ["date", "name_ration", "type_animal", "qtd_final", "qtd_final"];
+	var infos = ["data", nameRation, typeAnimal, "qtd", "price"];
+	var acessBanco = ["date", "name_ration", "type_animal", "qtd_final", "price"];
 	prodFind = []; // Todas as produções que forem encontradas, isto é, que tenham dados validos de acordo com as informações inseridas pelo usuário vem nessa variavel;
 	
 	for (i in productions)//Será percorido toda a lista de produções existentes
@@ -79,8 +81,28 @@ function informations()
 			for (t in infos)
 				{
 					var r = acessBanco[t];	
-					console.log(productions[i][r]);
-					if(r == "qtd_final")
+					
+					
+					if (r == "price")
+						{
+							if (costMa != 0){
+								
+								if(productions[i][r] > costMa)
+									{
+										tf = false;
+									}
+							}
+							
+							if (costMi != 0){
+							
+								if(productions[i][r] < costMi)
+									{
+										tf = false;
+									}
+							}
+						}
+					
+					else if(r == "qtd_final")
 						{
 							if(productions[i][r] < qtd_min || productions[i][r] > qtd_max ) 
 								// Verificação do valor: Ele deve ser maior que o minimo e menor que o maximo; 
@@ -154,16 +176,20 @@ function informations()
 		
 		//colocarDentro é a variavel que terá todo o conteudo que será colocado na tela para o usuário;
 		var colocarDentro = '<div class="panel panel-success"><div class="panel-heading">Produções Encontradas'
-				+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Nome da Produção</b></th><th><b>Quantidade Produzida</b></th><th><b>Data do Cadastro</b></th><th><b>Responsável</b></th></tr></thead><tbody>';
+				+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Nome da Ração</b></th><th><b>Quantidade Produzida</b></th><th><b>Custo</b></th><th><b>Data do Cadastro</b></th><th><b>Responsável</b></th></tr></thead><tbody>';
 		var somaTotalQtdFinais = 0.0;
+		var priceTotal = 0.0;
 		for (i in prodFind) {//Percorre todas as produções entradas
 				colocarDentro += '<tr class = "prodFound" onclick="productionSpecific('
 						+ prodFind[i].id + ", 'normal'" + ');">' //Informa o tipo do animal
 						+ "<td>" + prodFind[i].name_ration + "</td>" + "<td>" //O nome da ração
 						+ prodFind[i].qtd_final.toFixed(2) + " Kg</td>" + "<td>" // A quantidade final produzida
+						+ "R$" + prodFind[i].price.toFixed(2) + "</td>" + "<td>" // A quantidade final produzida
+	
 						+ prodFind[i].date + "</td>" + "<td>" // A data em que foi produzida
 						+ prodFind[i].user + "</td></tr>"; // E quam foi o usuário a cadastrar aquela produção
 				somaTotalQtdFinais += prodFind[i].qtd_final;
+				priceTotal += prodFind[i].price;
 				
 		}
 		
@@ -177,7 +203,8 @@ function informations()
 		}
 		else{
 			calcsWithInsumos(prodFind); //Coloca os dados do insumo; 
-			colocarDentro += "<tr><td><b> Consumo total de insumos: </b>"+ somaTotalQtdFinais.toFixed(2) +"Kg</td><td></td><td></td><td></td></tr>"
+			colocarDentro += "<tr><td><b> Consumo total de insumos: </b>"+ somaTotalQtdFinais.toFixed(2) +"Kg</td><td></td><td></td><td></td></tr>";
+			colocarDentro += "<tr><td><b> Gasto total: </b>R$"+ priceTotal.toFixed(2) +"</td><td></td><td></td><td></td></tr>"
 			colocarDentro += "</tbody></table></div></div>";//Fecha a tabela;
 			$("#caix").html(colocarDentro);//Insere os dados no HTML
 		}
@@ -222,10 +249,10 @@ function calcsWithInsumos(produt)
 		}
 	media = media / insu[1].length; //Calculando a média!
 	//Inserindo os dados dentro de uma variavel que posteriormente irá para o HTML!
-	colocarDentro += "<tr><td>Maior uso foi: </td> <td>" + maior.toFixed(2) + " Kg feita em " + idMaior["date"] + " na ração: " + idMaior["name_ration"] + "</td></tr>";
-	colocarDentro += "<tr><td>Menor uso foi: </td> <td>" + menor.toFixed(2) + " Kg feita em " + idMenor["date"] +  " na ração: " + idMenor["name_ration"] + "</td></tr>";
-	colocarDentro += "<tr><td>Gasto total do insumo: </td> <td>" + somaTotal.toFixed(2) + " Kg</td></tr>";
-	colocarDentro += "<tr><td>A Média de uso atual é: </td> <td>" + media.toFixed(2) + " Kg</td></tr> </tbody></table>";
+	colocarDentro += "<tr><td><b>Maior uso foi: </b></td> <td>" + maior.toFixed(2) + " Kg - <b> Data: </b>" + idMaior["date"] + " - <b>Ração:</b> " + idMaior["name_ration"] + "</td></tr>";
+	colocarDentro += "<tr><td><b>Menor uso foi: </b></td> <td>" + menor.toFixed(2) + " Kg - <b> Data: </b>" + idMenor["date"] + " - <b>Ração:</b> " + idMenor["name_ration"] + "</td></tr>";
+	colocarDentro += "<tr><td><b>Gasto total do insumo: </b></td> <td>" + somaTotal.toFixed(2) + " Kg</td></tr>";
+	colocarDentro += "<tr><td><b>A Média de uso atual é: </b></td> <td>" + media.toFixed(2) + " Kg</td></tr> </tbody></table>";
 	$("#infoInsumos").html(colocarDentro);//Colocando os dados no HTML;
 	if(maior <= 0 && menor <= 0 || somaTotal <= 0)//Se caso as variaveis contiveram ainda os seus valores iniciais, (continuarem intactas), significa que nenhum insumo foi encontrado!
 		{
@@ -360,22 +387,12 @@ function productionSpecific(id, type) {
 								+ cert.id + " novalidate>";
 						//Definimos um input com o Id da produção e o 'escondemos' dentro do HTML para buscarmos essa informação depois
 						
-						colocarDentro += "<tr><td>TOTAL</td>";
+						colocarDentro += "<tr><td><b>Total:</></td>";
+						colocarDentro += "<td>" + cert.qtd_final.toFixed(2) + " Kg</td></tr>";
+						colocarDentro += "<tr><td><b>Responsável: </b></td><td>" + cert.user + "</td></tr>";
+						colocarDentro += "<tr><td><b>Data: </b></td><td>" + cert.date + "</td></tr>";
+						colocarDentro += "<tr><td><b>Custo: </b></td><td>R$" + cert.price.toFixed(2) + "</td></tr>";
 
-						if (type == "normal") {
-							colocarDentro += "<td>" + cert.qtd_final.toFixed(2)
-									+ " Kg</td></tr>";
-						} else {
-							colocarDentro += "<td> <input type='text' id='qtd_final'  name='qtd_final' value="
-									+ cert.qtd_final + "></td></tr>";
-							colocarDentro += '</form> </tbody></table>';
-
-							colocarDentro += '<input type="submit" class="btn btn-success col-md-12 col-xs-12 col-md-offset-2" id="buttonForm1" value="Editar produção">';
-							// O botão de editar é um submit, que enviara os dados dos inputs (com os dados) 
-							colocarDentro += '<input type="button" onclick="sendForm();" class="btn btn-danger col-md-12 col-xs-12 col-md-offset-2" id="buttonForm2"  value="Remover produção">';
-							// Já esse botão chama um função JavaScript, que atráves de uma requisão AJAX, irá excluir a produção do banco
-							// O Id utilizado está implicito no HTML. Quando a função é chamada, ela busca o ID dentro do HTML
-							}
 						colocarDentro += "</div></div>";
 						$("#caix").html(colocarDentro);
 

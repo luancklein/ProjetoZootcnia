@@ -7,7 +7,7 @@
 <div class="form-group col-md-12 col-xs-12">
 
 	<div class="panel panel-success">
-		<div class="panel-heading">Relatório das compras de insumos</div>
+		<div class="panel-heading">Relatório estoque atual</div>
 		<div class="panel-body">
 			<table class="table table-hover">
 				<thead>

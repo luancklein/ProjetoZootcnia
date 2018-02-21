@@ -50,7 +50,7 @@ function generateReport(){
 
 var options = "<h1>PREVISÃO</h1><br>"
 	var options = '<div class="panel panel-success"><div class="panel-heading">Previsibilidade dos insumos' 
-		+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Insumo</b></th><th><b>Qtd na fábrica (IFC)</b></th><th><b>Média diária</b></th><th><b>Média por produção</b></th><th><b>Suficiente/Dias</b></th><th><b>Suficiente/Produções</b></th><th><b>Status</b></th></tr></thead><tbody>'; 
+		+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Insumo</b></th><th><b>Qtd na fábrica (IFC)</b><th>Qtd para empenhar</th><th>Preço kg</th></th><th><b>Média diária</b></th><th><b>Média por produção</b></th><th><b>Suficiente/Dias</b></th><th><b>Suficiente/Produções</b></th><th><b>Status</b></th></tr></thead><tbody>'; 
 	 
 
 var mediaDiaria = {};
@@ -115,6 +115,9 @@ for (i in forecast)
 		}
 		options += "<tr><td>" + forecast[i].nameInput + "</td><td>";
 		options += stockNow[i].qtdInIFC.toFixed(2) + " Kg</td><td>";
+		options += stockNow[i].qtdExternalStorage.toFixed(2) + "Kg </td><td>";
+		options += "R$" +stockNow[i].pricePerKg.toFixed(2) + "</td><td>";
+	
 		options += mediaD.toFixed(2) + " Kg</td><td>";
 		options += mediaP.toFixed(2) + " Kg</td><td>";
 		options += durableToDays.toFixed(2) + "</td><td>";

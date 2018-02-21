@@ -9,7 +9,7 @@
 		id="conteudo">
 		<div id="caixa">
 
-				<div id="nome" class="col-md-12">Editar receita</div>
+				<div id="nome" class="col-md-12">Editar fórmula</div>
 				<div class="form-group col-md-12 col-xs-12">
 					<label for="sel1">Selecione o tipo de ração:</label> <select
 						class="form-control" id="animal_type_ration"

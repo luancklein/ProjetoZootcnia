@@ -40,7 +40,30 @@ var rationCurrent = "";
 			});
 		}
 
-
+		
+var stockNow = []; //Variavel global usada para guardar as receitas!
+	function getStockNow()
+		{//Através de uma requisição AJAX, essa função irá buscar no banco TODOS os dados da tabela receita;
+			$.ajax({
+				method : "GET",
+				url : "/zoo/getStockNow",
+				success : function(response) {
+					console.log(response);
+					if (response.cod == "404") {
+						alert(response.message);
+					} else {
+						stockNow = response.data; //Adicionamos o valor de retorno a variavel global insumo;
+					}
+				},
+				failure : function(response) {
+					atualy = false;
+					error();
+					console.error(response);
+				}
+			});
+		}
+		
+		
 /*
  * Função usada para encontrar e colocar os insumos de determinada ração especifica
  * em seus devidos lugares;
@@ -51,6 +74,7 @@ function putInsumosForRation() {
 
 	name1 = $("#name_ration").val();
 	animal1 = $("#animal_type_ration").val();
+	insumosList = [];
 	if (name1 == "Selecione a ração") {
 		hideAll();
 	}
@@ -68,6 +92,7 @@ function putInsumosForRation() {
 				if (rationCurrent[i][txt] != "None")
 					//Se o insumo existir, no caso, não ser nulo, iremos colocar o nome e mostrar na dela ("desocultar")
 				{
+					insumosList.push(rationCurrent[i][txt]);
 					$(name).html(rationCurrent[i][txt]);//Colocamos o nome do insumo
 					$(name).css({
 						"display" : "inline"
@@ -118,11 +143,27 @@ function showToast() {
 
 //this is the id of the form
 function sendData(){
-	
+	custoProd = 0.0;
+	cont = 1;
+	for (i in insumosList)
+		{	
+			
+			var insumoX = "insumo" + cont;
+			var qtdInp = $("#" + insumoX).val();
+			for (t in stockNow)
+				{
+					if (insumosList[i] == stockNow[t].nameInput)
+						{
+							custoProd += stockNow[t].pricePerKg * qtdInp;
+						}
+				}
+			cont += 1;
+		}
+	alert("Custo: " + custoProd);
 	    $.ajax({
 	           type: "POST",
 	           url: "/zoo/registerNewProdution",
-	           data: $("#addProdForm").serialize(), // serializes the form's elements.
+	           data: $("#addProdForm").serialize() + "&prod.price=" + custoProd, // serializes the form's elements.
 	   		success : function(response) {
 				console.log(response);
 				if (response.cod == "404") {
@@ -156,3 +197,5 @@ function sendData(){
 		});
 			
 	}
+
+getStockNow();

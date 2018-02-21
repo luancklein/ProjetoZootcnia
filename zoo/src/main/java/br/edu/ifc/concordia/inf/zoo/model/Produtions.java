@@ -39,8 +39,15 @@ private static final long serialVersionUID = 1L;
 	private String date;
 	private String name_ration;
 	private String disable;
+	private Double price = 0.0;
 	
 	
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 	public String getType_animal() {
 		return type_animal;
 	}

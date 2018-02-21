@@ -39,6 +39,16 @@
 		id="dataFim" class="form-control"> 
 	
 	
+	<label for="sel1">Custo mínimo:</label> 
+	<input type="number" class="form-control" id="cost_min"
+		name="cost_min" min=0 value=0> 
+	
+	<label for="sel1">Custo máximo:</label> 
+	<input type="number" class="form-control" id="cost_max"
+		name="cost_max" min=0 value=0> 
+		
+
+	
 	<label for="sel1">Quantidade final minima da produção:</label> 
 	<input type="number" class="form-control" id="qtd_final_min" name="qtd_final_min" min=0
 		value=0> 

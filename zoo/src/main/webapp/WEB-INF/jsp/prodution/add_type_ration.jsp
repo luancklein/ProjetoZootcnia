@@ -8,7 +8,7 @@
 	<div class="col-md-8 col-xs-10 col-md-offset-2 col-xs-offset-1"
 		id="conteudo">
 		<div id="caixa">
-			<div id="nome" class="col-md-12">Adicionar tipo de ração</div>
+			<div id="nome" class="col-md-12">Adicionar nova fórmulao</div>
 
 			<div class="form-group col-md-6 col-xs-12">
 				<label for="sel1">Destinado:</label> <select class="form-control"

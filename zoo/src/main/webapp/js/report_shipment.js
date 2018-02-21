@@ -19,7 +19,7 @@ function generateReport(){
 				alert(response.message);
 			} else {
 				
-				var options = '<div class="panel panel-success"><div class="panel-heading">Relatório das chegadas de insumos na fábrica de ração' 
+				var options = '<div class="panel panel-success"><div class="panel-heading">Relatório das empenhadas (entradas de insumos na fábrica de ração)' 
 					+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Insumo</b></th><th><b>Data de chegada</b></th><th><b>Quantidade</b></th></tr></thead><tbody>'; 
 				for (i in response.data) {
 					options += "<tr> <td> " + response.data[i].name +"</td><td>";

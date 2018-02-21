@@ -80,6 +80,7 @@ public class ProdutionController extends AbstractController {
 	@Post(value="/registerNewProdution")
 	@NoCache
 	public void registerNewProdution(Produtions prod) {
+		
 		Receitas receita = this.bs.getInsumos(prod.getName_ration(), prod.getType_animal());
 		double[] qtdInputs;
 		qtdInputs = new double[12];
@@ -112,7 +113,7 @@ public class ProdutionController extends AbstractController {
 		names[11] = receita.getInsumo12();		
 		
 		Boolean state = true;
-		
+
 		
 		for (int i = 0; i < 12; i++)
 		{

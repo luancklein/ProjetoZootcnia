@@ -16,7 +16,7 @@ function generateReport()
 			if (response.cod == "404") {
 				alert(response.message);
 			} else {
-				var options = '<div class="panel panel-success"><div class="panel-heading">Relatório das compras de insumos' 
+				var options = '<div class="panel panel-success"><div class="panel-heading">Relatório das licitações' 
 					+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Insumo</b></th><th><b>Data da compra</b></th><th><b>Quantidade</b></th><th><b>Preço total</b></th><th><b>Preço por Kg</b></th></tr></thead><tbody>'; 
 
 				for (i in response.data) {
