@@ -47,6 +47,10 @@
 
 
 <div class="form-group col-md-9 col-xs-12" id="reportOutputs"></div>
+<div id="columnchart_material" style="width: 100%; height: 500px;  display: table;"></div>
+
+
 </main>
 <c:import url="/includes/footer.jsp" />
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="<c:url value="/js/report_outputs.js" />"></script>

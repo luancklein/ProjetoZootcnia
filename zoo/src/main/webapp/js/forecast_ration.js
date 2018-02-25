@@ -1,5 +1,7 @@
 
-
+  google.charts.load('current', {'packages':['bar']});
+  google.charts.setOnLoadCallback(drawChart);
+  
 var stockNow = []; //Variavel global usada para guardar as receitas!
 function getStockNow()
 {//Através de uma requisição AJAX, essa função irá buscar no banco TODOS os dados da tabela receita;
@@ -46,6 +48,7 @@ function getForecast()
 	});
 }
 
+var insumosGraphic = [['Insumo', 'Na fábrica', 'Disponivel para empenhar']];
 function generateReport(){ 
 
 var options = "<h1>PREVISÃO</h1><br>"
@@ -116,29 +119,43 @@ for (i in forecast)
 		options += "<tr><td>" + forecast[i].nameInput + "</td><td>";
 		options += stockNow[i].qtdInIFC.toFixed(2) + " Kg</td><td>";
 		options += stockNow[i].qtdExternalStorage.toFixed(2) + "Kg </td><td>";
-		options += "R$" +stockNow[i].pricePerKg.toFixed(2) + "</td><td>";
+		options += "R$" + stockNow[i].pricePerKg.toFixed(2) + "</td><td>";
 	
 		options += mediaD.toFixed(2) + " Kg</td><td>";
 		options += mediaP.toFixed(2) + " Kg</td><td>";
 		options += durableToDays.toFixed(2) + "</td><td>";
 		options += durableToProd.toFixed(2) + "</td><td " + classe +" >"
 		options += state + "</td></tr>";
+		insumosGraphic.push([forecast[i].nameInput, stockNow[i].qtdInIFC, stockNow[i].qtdExternalStorage]);
 	}
 	
+
+
 options += "</tbody></table></div></div>";
 	
 	$("#forecastRation").html(options);
+	drawChart();
 }
 
-
-
-$( "#calcular" ).click(function() {
-	generateReport();
-	
-});
-
-
 window.onload = function(e) {
-	
 	getStockNow();
 };
+
+
+
+
+
+ function drawChart() {
+	 var data = google.visualization.arrayToDataTable(insumosGraphic);
+
+    var options = {
+      chart: {
+        title: 'Disponibilidade de Insumo',
+        subtitle: 'Quantidades na fábrica e disponíveis para empenhar',
+      }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+  }

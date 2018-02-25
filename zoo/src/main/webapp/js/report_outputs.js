@@ -38,6 +38,11 @@ var rationCurrent = "";
 				}
 			});
 		}
+
+		var names = [];
+		var namesQtds = {};
+		var namesPrices = {};
+		var namesQtdProd = {};
 		
 function generateReport(){
 			var nameInput = $( "select#name option:checked" ).val();
@@ -67,10 +72,16 @@ function generateReport(){
 					if (response.cod == "404") {
 						alert(response.message);
 					} else {
+						
+						names = [];
+						namesQtds = {};
+						namesPrices = {};
+						namesQtdProd = {};
+						
 						var qtdTotal = 0;
 						var n = 0;
 						var priceTotal = 0.0;
-						
+					
 						
 						var maiorQtd = 0;
 						var idMaiorQtd = 0;
@@ -88,6 +99,20 @@ function generateReport(){
 							+ '</div><div class="panel-body"><table class="table table-hover"><thead><tr><th><b>Insumo</b></th><th><b>Animal</b></th><th><b>Ração</b></th><th><b>Quantidade</b></th><th><b>Custo</b></th><th><b>Data</b></th></tr></thead><tbody>'; 
 						 
 						for (i in response.data) {
+							
+							if(names.indexOf(response.data[i].nameInput) != -1)
+								{
+									namesQtds[response.data[i].nameInput] += response.data[i].qtd;
+									namesPrices[response.data[i].nameInput] += response.data[i].price;
+									namesQtdProd[response.data[i].nameInput] += 1;
+								}
+							else{
+								names.push(response.data[i].nameInput);
+								namesQtds[response.data[i].nameInput] = 0;
+								namesPrices[response.data[i].nameInput] = 0;
+								namesQtdProd[response.data[i].nameInput] = 0;
+							}
+							
 							options += "<tr> <td> " + response.data[i].nameInput +"</td><td>";
 							options += response.data[i].animal + "</td><td>";
 							options += response.data[i].nameProdution + "</td><td>";
@@ -97,6 +122,8 @@ function generateReport(){
 							qtdTotal += response.data[i].qtd;
 							n += 1;
 							priceTotal += response.data[i].price;
+							
+							
 							
 							if (response.data[i].qtd > maiorQtd)
 								{
@@ -147,7 +174,7 @@ function generateReport(){
 						
 						
 						if (response.data.length == 0){$("#reportOutputs").html("Nenhuma compra encontrada!");}
-						else{$("#reportOutputs").html(options);}
+						else{$("#reportOutputs").html(options);drawChart();}
 					}
 				},
 				failure : function(response) {
@@ -165,4 +192,33 @@ $( "#salvar" ).click(function() {
 
 window.onload = function(e) {
 	generateReport();
+	
 };
+
+
+google.charts.load('current', {'packages':['bar']});
+google.charts.setOnLoadCallback(drawChart);
+
+
+function drawChart() {
+	list = [ ['Insumos', 'Quantidade total (Kg)', 'Valor total (R$)']]
+	for (i in names)
+		{
+			list.push([names[i], namesQtds[names[i]], namesPrices[names[i]]])
+		}
+	
+	
+	
+  var data = google.visualization.arrayToDataTable(list);
+
+  var options = {
+    chart: {
+      title: 'Uso dos insumos',
+      subtitle: 'Quantidades e valores gastas e quantidade de produções',
+    }
+  };
+
+  var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+  chart.draw(data, google.charts.Bar.convertOptions(options));
+}
