@@ -159,3 +159,19 @@ window.onload = function(e) {
 
     chart.draw(data, google.charts.Bar.convertOptions(options));
   }
+ 
+ 
+ $( "#imprimir" ).click(function() {
+	    var $print = $("#fullReport")
+	        .clone()
+	        .addClass('print')
+	        .prependTo('body');
+
+	    // Stop JS execution
+	    window.print();
+
+	    // Remove div once printed
+	    $print.remove();
+	});
+
+ $("#imprimir").css({"display" : "block"});

@@ -1,3 +1,5 @@
+
+
 * {
 	box-sizing: border-box;
 }
@@ -211,4 +213,32 @@ button{
 @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+}
+
+#imprimir{
+	display: none;
+}
+
+
+@media print {
+    html, body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    #fullReport {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 14px;
+        backgroud-color: red;
+    }
+    #fullReport ~ * {
+        display: none;
+    }
+    
+    #imprimir{
+    display: none;
+    visibility: hidden;
+    }
 }

@@ -7,7 +7,9 @@
 
 
 
-
+<input type="button" value="Imprimir" id="imprimir"
+		class="btn btn-primary salvar col-md-3 col-xs-3 col-md-offset-3">
+		
 <div class="form-group col-md-12 col-xs-12" id="forecastRation"></div>
 <div id="columnchart_material" style="width: 100%; height: 500px; display: table;"></div>
 </main>

@@ -172,9 +172,11 @@ function generateReport(){
 						options += "<tr><td><b>Maior uso foi: </b></td> <td>" + maCus.toFixed(2) + "Kg - <b> Data: </b>" + response.data[idMaiorQtd].date + " - <b>Animal:</b> " + response.data[idMaiorQtd].animal + " - <b>Ração </b>" + response.data[idMaiorQtd].nameProdution +"</td></tr>";
 						options += "<tr><td><b>Menor uso foi: </b></td> <td>" + meCus.toFixed(2) + "Kg - <b> Data: </b>" + response.data[idMenorQtd].date + " - <b>Animal:</b> " + response.data[idMenorQtd].animal + " - <b>Ração </b>" + response.data[idMenorQtd].nameProdution +"</td></tr></tbody></table></div></div>";
 						
-						
 						if (response.data.length == 0){$("#reportOutputs").html("Nenhuma compra encontrada!");}
-						else{$("#reportOutputs").html(options);drawChart();}
+						else{$("#reportOutputs").html(options);drawChart();$("#imprimir").css({"display" : "block"});}
+						
+						
+						
 					}
 				},
 				failure : function(response) {
@@ -184,6 +186,8 @@ function generateReport(){
 				}
 			});
 		}
+
+
 
 $( "#salvar" ).click(function() {
 	generateReport();
@@ -222,3 +226,19 @@ function drawChart() {
 
   chart.draw(data, google.charts.Bar.convertOptions(options));
 }
+
+$( "#imprimir" ).click(function() {
+    var $print = $("#fullReport")
+        .clone()
+        .addClass('print')
+        .prependTo('body');
+
+    // Stop JS execution
+    window.print();
+
+    // Remove div once printed
+    $print.remove();
+});
+
+
+

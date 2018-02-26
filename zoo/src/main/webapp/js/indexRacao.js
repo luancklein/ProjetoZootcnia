@@ -154,6 +154,7 @@ function typeProductionSelected(nameRation, type) {
 	}
 	colocarDentro += "</tbody></table></div></div>";
 	$("#caix").html(colocarDentro);
+	$("#imprimir").css({"display" : "block"});
 }
 
 // Função voltada para encontrar os insumos de uma produção, e inserir os dados dentro do HTML
@@ -224,6 +225,7 @@ function productionSpecific(id, type) {
 						}
 						colocarDentro += "</div></div>";
 						$("#caix").html(colocarDentro);
+						
 
 					}
 				},
@@ -234,3 +236,16 @@ function productionSpecific(id, type) {
 				}
 			});
 }
+
+$( "#imprimir" ).click(function() {
+    var $print = $("#fullReport")
+        .clone()
+        .addClass('print')
+        .prependTo('body');
+
+    // Stop JS execution
+    window.print();
+
+    // Remove div once printed
+    $print.remove();
+});

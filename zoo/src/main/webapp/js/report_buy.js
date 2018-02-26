@@ -29,7 +29,7 @@ function generateReport()
 				
 				options += "</tbody></table></div></div>";
 				if (response.data.length == 0){$("#reportBuy").html("Nenhuma compra encontrada!");}
-				else{$("#reportBuy").html(options);}
+				else{$("#reportBuy").html(options);$("#imprimir").css({"display" : "block"});}
 			}
 		},
 		failure : function(response) {
@@ -52,5 +52,17 @@ window.onload = function(e) {
 };
 
 
+$( "#imprimir" ).click(function() {
+    var $print = $("#fullReport")
+        .clone()
+        .addClass('print')
+        .prependTo('body');
+
+    // Stop JS execution
+    window.print();
+
+    // Remove div once printed
+    $print.remove();
+});
 
 	

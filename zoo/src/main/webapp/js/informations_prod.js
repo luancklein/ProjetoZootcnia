@@ -1,3 +1,4 @@
+
 //Essa requisição AJAX é utilizada para buscar TODAS as produções cadastradas no banco
 var productions = "";
 function getProdutions() {
@@ -207,6 +208,7 @@ function informations()
 			colocarDentro += "<tr><td><b> Gasto total: </b>R$"+ priceTotal.toFixed(2) +"</td><td></td><td></td><td></td></tr>"
 			colocarDentro += "</tbody></table></div></div>";//Fecha a tabela;
 			$("#caix").html(colocarDentro);//Insere os dados no HTML
+			
 		}
 }
 
@@ -458,3 +460,18 @@ function getNameRations() {
 		}
 	});
 }
+
+$( "#imprimir" ).click(function() {
+    var $print = $("#fullReport")
+        .clone()
+        .addClass('print')
+        .prependTo('body');
+
+    // Stop JS execution
+    window.print();
+
+    // Remove div once printed
+    $print.remove();
+});
+
+$("#imprimir").css({"display" : "block"});

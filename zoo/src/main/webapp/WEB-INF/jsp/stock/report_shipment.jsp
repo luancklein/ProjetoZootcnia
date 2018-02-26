@@ -21,12 +21,14 @@
 	</div>
 	<input type="button" value="Pesquisar" id="salvar"
 		class="btn btn-success salvar col-md-12 col-xs-12 col-md-offset-12">
+	<input type="button" value="Imprimir" id="imprimir"
+		class="btn btn-primary salvar col-md-12 col-xs-12 col-md-offset-12">
 </div>
 
 
-
+<div id="fullReport">
 <div class="form-group col-md-9 col-xs-12" id="reportShipment">
-
+</div>
 
 </div>
 

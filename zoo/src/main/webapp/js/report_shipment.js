@@ -28,7 +28,7 @@ function generateReport(){
 				}
 				options += "</tbody></table></div></div>";
 				if (response.data.length == 0){$("#reportShipment").html("Nenhuma entrada encontrada!");}
-				else{$("#reportShipment").html(options);}
+				else{$("#reportShipment").html(options);$("#imprimir").css({"display" : "block"});}
 			}
 		},
 		failure : function(response) {
@@ -47,5 +47,17 @@ function generateReport(){
 		generateReport();
 	};
 
+	$( "#imprimir" ).click(function() {
+	    var $print = $("#fullReport")
+	        .clone()
+	        .addClass('print')
+	        .prependTo('body');
+
+	    // Stop JS execution
+	    window.print();
+
+	    // Remove div once printed
+	    $print.remove();
+	});
 
 	

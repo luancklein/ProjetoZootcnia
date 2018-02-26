@@ -4,7 +4,7 @@
 <c:import url="/includes/header.jsp" />
 <main class="container">
 
-<div class="form-group col-md-4 col-xs-4">
+<div class="form-group col-md-3 col-xs-12">
 <div class="alert alert-success" role="alert">FILTROS PARA CONSULTA</div>
 	<label for="sel1">Selecione o tipo de ração:</label> 
 	<select
@@ -60,15 +60,19 @@
 	<button id="bt_get_inform"
 		class="btn btn-success col-md-12 col-xs-12"
 		onclick="informations();">Pesquisar</button>
+		
+		<input type="button" value="Imprimir" id="imprimir"
+		class="btn btn-primary salvar col-md-12 col-xs-12 col-md-offset-12">
 
 	 
 	
 		
 </div>
-<div id="caix" class="col-md-8 col-xs-8"></div>
-<div id="infoInsumos"class="col-md-8 col-xs-8"><h3>Neste espaço irão aparecer a previsão de cada insumo!</h3>
+<div id="fullReport">
+<div id="caix" class="col-md-9 col-xs-12"></div>
+<div id="infoInsumos"class="col-md-8 col-xs-12"><h3>Neste espaço irão aparecer a previsão de cada insumo!</h3>
 <h4>Basta clicar no botão "Pesquisar"!</h4></div> </main>
-
+</div>
 
 <c:import url="/includes/footer.jsp" />
 

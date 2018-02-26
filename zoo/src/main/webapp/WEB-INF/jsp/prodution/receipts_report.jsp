@@ -2,10 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:import url="/includes/header.jsp" />
+<input type="button" value="Imprimir" id="imprimir"
+		class="btn btn-primary salvar col-md-3 col-xs-3 col-md-offset-3">
 <main class="container">
 
-<div class="container-fluid">
 
+
+<div class="container-fluid">
+	
+<div id="fullReport">
 	<div class="panel panel-success">
 		<div class="panel-heading"><b>Fórmulas cadastradas</b></div>
 		<div class="panel-body">
@@ -42,5 +47,26 @@
 		</div>
 	</div>
 </div>
+</div>
 </main>
+
+
+
 <c:import url="/includes/footer.jsp" />
+<script>
+
+$( "#imprimir" ).click(function() {
+    var $print = $("#fullReport")
+        .clone()
+        .addClass('print')
+        .prependTo('body');
+
+    // Stop JS execution
+    window.print();
+
+    // Remove div once printed
+    $print.remove();
+});
+
+$("#imprimir").css({"display" : "block"});
+</script>

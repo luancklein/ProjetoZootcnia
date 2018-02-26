@@ -27,7 +27,7 @@
 			<option>Suína</option>
 		</select>
 	</div>
-	
+
 	<div class="form-group col-md-12 col-xs-12">
 		<label for="sel1">Nome da ração:</label> <select class="form-control"
 			id="name_ration" name="name_ration" disable>
@@ -42,15 +42,24 @@
 
 	<input type="button" value="Pesquisar" id="salvar"
 		class="btn btn-success salvar col-md-12 col-xs-12 col-md-offset-12">
+
+	<input type="button" value="Imprimir" id="imprimir"
+		class="btn btn-primary salvar col-md-12 col-xs-12 col-md-offset-12">
+
+
 </div>
 
 
 
+<div id="fullReport">
 <div class="form-group col-md-9 col-xs-12" id="reportOutputs"></div>
-<div id="columnchart_material" style="width: 100%; height: 500px;  display: table;"></div>
-
+<br>
+<div id="columnchart_material"
+	style="width: 100%; height: 500px; display: table;"></div>
+</div>
 
 </main>
 <c:import url="/includes/footer.jsp" />
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="<c:url value="/js/report_outputs.js" />"></script>
