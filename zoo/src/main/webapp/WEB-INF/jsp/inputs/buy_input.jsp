@@ -9,7 +9,7 @@
 	<div class="col-md-8 col-xs-10 col-md-offset-2 col-xs-offset-1"
 		id="conteudo">
 		<div id="caixa">
-			<div id="nome" class="col-md-12">Adicionar nova compra insumo</div>
+			<div id="nome" class="col-md-12">Adicionar nova licitação</div>
 
 
 			<div class="form-group col-md-6 col-xs-12">
