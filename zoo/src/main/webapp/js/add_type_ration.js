@@ -38,7 +38,7 @@ function listInsumos()
 {//Através de uma requisição AJAX, essa função irá buscar no banco TODOS os dados da tabela receita;
 	$.ajax({
 		method : "GET",
-		url : "/zoo/getAllInsumos",
+		url :  generateLink("getAllInsumos"),
 		success : function(response) {
 			console.log(response);
 			if (response.cod == "404") {
@@ -72,7 +72,7 @@ function sendData(){
 	
 	$.ajax({
 		method : "GET",
-		url : "/zoo/registerNewTypeRation",
+		url : ("registerNewTypeRation"),
 		data: $("#registerNewType").serialize(), // serializes the form's elements.
 		success : function(response) {
 			console.log(response);

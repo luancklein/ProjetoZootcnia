@@ -7,7 +7,7 @@ var rationCurrent = "";
 			animal1 = $("#animal_type_ration").val();
 			$.ajax({
 				method : "GET",
-				url : "/zoo/getNameRations",
+				url :  generateLink("getNameRations"),
 				data : {
 					animal : animal1
 				},
@@ -46,7 +46,7 @@ var stockNow = []; //Variavel global usada para guardar as receitas!
 		{//Através de uma requisição AJAX, essa função irá buscar no banco TODOS os dados da tabela receita;
 			$.ajax({
 				method : "GET",
-				url : "/zoo/getStockNow",
+				url :  generateLink("getStockNow"),
 				success : function(response) {
 					console.log(response);
 					if (response.cod == "404") {
@@ -162,7 +162,7 @@ function sendData(){
 		}
 	    $.ajax({
 	           type: "POST",
-	           url: "/zoo/registerNewProdution",
+	           url:  generateLink("registerNewProdution"),
 	           data: $("#addProdForm").serialize() + "&prod.price=" + custoProd + pricesInsumo, // serializes the form's elements.
 	   		success : function(response) {
 				console.log(response);

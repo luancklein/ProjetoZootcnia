@@ -7,7 +7,7 @@ function getStockNow()
 {//Através de uma requisição AJAX, essa função irá buscar no banco TODOS os dados da tabela receita;
 	$.ajax({
 		method : "GET",
-		url : "/zoo/getStockNow",
+		url :  generateLink("getStockNow"),
 		success : function(response) {
 			console.log(response);
 			if (response.cod == "404") {
@@ -30,7 +30,7 @@ function getForecast()
 {//Através de uma requisição AJAX, essa função irá buscar no banco TODOS os dados da tabela receita;
 	$.ajax({
 		method : "GET",
-		url : "/zoo/getInputForecast",
+		url :  generateLink("getInputForecast"),
 		success : function(response) {
 			console.log(response);
 			if (response.cod == "404") {

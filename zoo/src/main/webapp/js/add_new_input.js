@@ -5,13 +5,15 @@ function showToast() {
     return true;
 }
 
+
+
+
 function sendData(){
 	
 	var input = $("#name").val();
-	
 	$.ajax({
 		method : "GET",
-		url : "/zoo/registerNewInputInToStock",
+		url: generateLink("registerNewInputInToStock"),
 		data : {
 			name : input
 		},

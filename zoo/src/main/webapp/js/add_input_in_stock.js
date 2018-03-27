@@ -11,7 +11,7 @@ function sendData(){
 	
 	$.ajax({
 		method : "GET",
-		url : "/zoo/registerNewAtualizationOnInputs",
+		url : generateLink("registerNewAtualizationOnInputs"),
 		data : {
 			name_input : input,
 			qtd : qtdNow, 

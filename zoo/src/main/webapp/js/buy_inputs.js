@@ -15,7 +15,7 @@ function sendData(){
 	
 	$.ajax({
 		method : "GET",
-		url : "/zoo/buyInput",
+		url :  generateLink("buyInput"),
 		data : {
 			name : input,
 			dateBuy : dateNow, 

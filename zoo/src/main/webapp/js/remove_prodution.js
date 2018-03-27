@@ -3,7 +3,7 @@ function sendForm() {
 	id2 = $("#id").val();
 	$.ajax({
 		method : "GET",
-		url : "/zoo/disableProduction",
+		url :  generateLink("disableProduction"),
 		data : {
 			id : id2
 		},

@@ -8,7 +8,7 @@ function generateReport(){
 	if(nameInput == "Todos"){nameInput = "0"; }
 	$.ajax({
 		method : "GET",
-		url : "/zoo/shipmentReport",
+		url :  generateLink("shipmentReport"),
 		data : {
 			name : nameInput,
 			year : data

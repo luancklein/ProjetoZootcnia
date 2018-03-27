@@ -6,7 +6,7 @@ function generateReport()
 	if(nameInput == "Todos"){nameInput = "0"; }
 	$.ajax({
 		method : "GET",
-		url : "/zoo/buyInputReport",
+		url :  generateLink("buyInputReport"),
 		data : {
 			name : nameInput,
 			year : data
@@ -53,7 +53,7 @@ function deleteBuy(idB, qtdB, nameI)
 {
 	$.ajax({
 		method : "GET",
-		url : "/zoo/deleteBuyInput",
+		url :  generateLink("deleteBuyInput"),
 		data : {
 			id : idB,
 			qtdBuy : qtdB, 

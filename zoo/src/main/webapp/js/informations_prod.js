@@ -4,7 +4,7 @@ var productions = "";
 function getProdutions() {
 	$.ajax({
 		method : "GET",
-		url : "/zoo/getProdutions",
+		url :  generateLink("getProdutions"),
 		success : function(response) {
 			console.log(response);
 			if (response.cod == "404") {
@@ -336,7 +336,7 @@ function listInsumos()
 {//Através de uma requisição AJAX, essa função irá buscar no banco TODOS os dados da tabela receita;
 	$.ajax({
 		method : "GET",
-		url : "/zoo/getAllInsumos",
+		url :  generateLink("getAllInsumos"),
 		success : function(response) {
 			console.log(response);
 			if (response.cod == "404") {
@@ -371,7 +371,7 @@ function productionSpecific(id, type) {
 	animal1 = $("#animal_type_ration").val();
 	$.ajax({
 				method : "GET",
-				url : "/zoo/getInsumos",
+				url :  generateLink("getInsumos"),
 				data : {
 					name : cert.name_ration,
 					animal : cert.type_animal
@@ -429,7 +429,7 @@ function getNameRations() {
 	animal1 = $("#animal_type_ration").val();
 	$.ajax({
 		method : "GET",
-		url : "/zoo/getNameRations",
+		url :  generateLink("getNameRations"),
 		data : {
 			animal : animal1
 		},

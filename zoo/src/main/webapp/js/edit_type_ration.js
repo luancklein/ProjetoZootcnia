@@ -3,7 +3,7 @@ var rationCurrent = "";
 			animal1 = $("#animal_type_ration").val();
 			$.ajax({
 				method : "GET",
-				url : "/zoo/getNameRations",
+				url :  generateLink("getNameRations"),
 				data : {
 					animal : animal1
 				},
@@ -42,7 +42,7 @@ function listInsumos()
 {//Através de uma requisição AJAX, essa função irá buscar no banco TODOS os dados da tabela receita;
 	$.ajax({
 		method : "GET",
-		url : "/zoo/getAllInsumos",
+		url :  generateLink("getAllInsumos"),
 		success : function(response) {
 			console.log(response);
 			if (response.cod == "404") {

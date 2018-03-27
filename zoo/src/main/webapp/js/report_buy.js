@@ -6,7 +6,7 @@ function generateReport()
 	if(nameInput == "Todos"){nameInput = "0"; }
 	$.ajax({
 		method : "GET",
-		url : "/zoo/buyInputReport",
+		url :  generateLink("buyInputReport"),
 		data : {
 			name : nameInput,
 			year : data

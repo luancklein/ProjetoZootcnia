@@ -60,6 +60,7 @@
 
 </main>
 <c:import url="/includes/footer.jsp" />
+<script src="<c:url value="/js/generateAutoLink.js" />"></script>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="<c:url value="/js/report_outputs.js" />"></script>

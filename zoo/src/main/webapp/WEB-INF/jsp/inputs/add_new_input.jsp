@@ -30,4 +30,5 @@
 
 </main>
 <c:import url="/includes/footer.jsp" />
+<script src="<c:url value="/js/generateAutoLink.js" />"></script>
 <script src="<c:url value="/js/add_new_input.js" />"></script>

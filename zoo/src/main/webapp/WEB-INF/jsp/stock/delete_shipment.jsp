@@ -32,4 +32,5 @@
 <div id="snackbar">Cadastro realizado com sucesso!</div>
 </main>
 <c:import url="/includes/footer.jsp" />
+<script src="<c:url value="/js/generateAutoLink.js" />"></script>
 <script src="<c:url value="/js/delete_shipment.js" />"></script>

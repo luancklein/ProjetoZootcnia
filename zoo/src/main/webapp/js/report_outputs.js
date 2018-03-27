@@ -7,7 +7,7 @@ var rationCurrent = "";
 			var nameAnimal = $( "select#animal_type_ration option:checked" ).val();
 			$.ajax({
 				method : "GET",
-				url : "/zoo/getNameRationsToReport",
+				url :  generateLink("getNameRationsToReport"),
 				data : {
 					animal : nameAnimal
 				},
@@ -60,7 +60,7 @@ function generateReport(){
 			if(nameInput == "Todos"){nameInput = "0"; }
 			$.ajax({
 				method : "GET",
-				url : "/zoo/outputInputsReport",
+				url :  generateLink("outputInputsReport"),
 				data : {
 					name : nameInput,
 					year : date,

@@ -3,7 +3,7 @@ var productions = "";
 function getProdutions(type) {
 	$.ajax({
 		method : "GET",
-		url : "/zoo/getProdutions",
+		url :  generateLink("getProdutions"),
 		success : function(response) {
 			console.log(response);
 			if (response.cod == "404") {
@@ -174,7 +174,7 @@ function productionSpecific(id, type) {
 	animal1 = $("#animal_type_ration").val();
 	$.ajax({
 				method : "GET",
-				url : "/zoo/getInsumos",
+				url :  generateLink("getInsumos"),
 				data : {
 					name : cert.name_ration,
 					animal : cert.type_animal

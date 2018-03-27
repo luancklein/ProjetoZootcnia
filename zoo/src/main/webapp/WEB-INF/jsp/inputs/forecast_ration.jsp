@@ -15,4 +15,5 @@
 </main>
 <c:import url="/includes/footer.jsp" />
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="<c:url value="/js/generateAutoLink.js" />"></script>
 <script src="<c:url value="/js/forecast_ration.js" />"></script>

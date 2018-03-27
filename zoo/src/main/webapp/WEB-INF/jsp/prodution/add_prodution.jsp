@@ -133,5 +133,6 @@
 <div id="snackbar">Exclusão realizada com sucesso!</div>
 </main>
 <c:import url="/includes/footer.jsp" />
+<script src="<c:url value="/js/generateAutoLink.js" />"></script>
 <script src="<c:url value="/js/add_prodution.js" />"></script>
 

@@ -6,7 +6,7 @@ function generateReport()
 	if(nameInput == "Todos"){nameInput = "X"; }
 	$.ajax({
 		method : "GET",
-		url : "/zoo/shipmentReport",
+		url :  generateLink("shipmentReport"),
 		data : {
 			name : nameInput,
 			year : data
@@ -45,7 +45,7 @@ function deleteShipment(idS, qtdS, nameS)
     {
 	$.ajax({
 		method : "GET",
-		url : "/zoo/deleteShipment",
+		url :  generateLink("deleteShipment"),
 		data : {
 			id : idS,
 			qtd : qtdS, 
